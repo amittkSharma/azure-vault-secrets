@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "alwaysStrict": true,
+    "allowUnreachableCode": false,
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "strictNullChecks": true,
+    "forceConsistentCasingInFileNames": true,
+    "importHelpers": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "sourceMap": false,
+    "declaration": false,
+    "esModuleInterop": true,
+    "jsx": "react",
+    "lib": ["dom", "dom.iterable", "esnext", "ES2022"],
+    "module": "commonjs",
+    "noEmitOnError": true,
+    "skipLibCheck": true,
+    "target": "ES2022", // according to https://github.com/tsconfig/bases/blob/master/bases/node12.json
+    "strict": true,
+    "outDir": "build/dist",
+    "rootDir": "src",
+    "downlevelIteration": true,
+    "allowUnusedLabels": false,
+    "noEmitHelpers": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true, // TRUE
+    "pretty": true,
+    "removeComments": false,
+    "suppressExcessPropertyErrors": false,
+    "resolveJsonModule": true
+  },
+  "include": ["src/**/*", "src/**/*.json"],
+  "exclude": ["node_modules"]
+}
