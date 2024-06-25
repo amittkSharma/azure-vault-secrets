@@ -23,7 +23,7 @@
     "skipLibCheck": true,
     "target": "ES2022", // according to https://github.com/tsconfig/bases/blob/master/bases/node12.json
     "strict": true,
-    "outDir": "build/dist",
+    "outDir": "build",
     "rootDir": "src",
     "downlevelIteration": true,
     "allowUnusedLabels": false,

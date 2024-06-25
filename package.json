@@ -9,6 +9,7 @@
   "private": false,
   "scripts": {
     "start": "yarn ts-node src/index.ts",
+    "build": "tsc --project tsconfig.json",
     "lint": "eslint src",
     "lint:fix": "eslint --fix src",
     "release": "commit-and-tag-version"
