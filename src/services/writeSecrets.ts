@@ -1,6 +1,6 @@
-import { join } from 'path';
 import { writeFile } from 'fs/promises';
 import { existsSync, readFileSync } from 'fs';
+import { log } from '../utils';
 
 const readDotEnvFile = (filepath: string) => {
   if (existsSync(filepath)) {
@@ -19,11 +19,8 @@ const readDotEnvFile = (filepath: string) => {
   return '';
 };
 
-export const writeSecrets = async (envFileEntries: { [key: string]: string }, target: string) => {
-  const targetDirectory = join(process.cwd(), target || '.');
-  const filepath = join(targetDirectory, '.env');
-
-  const existingContent = readDotEnvFile(filepath);
+export const writeSecrets = async (envFileEntries: { [key: string]: string }, filePath: string) => {
+  const existingContent = readDotEnvFile(filePath);
 
   /**
    * create env file
@@ -33,7 +30,7 @@ export const writeSecrets = async (envFileEntries: { [key: string]: string }, ta
       .map(key => `${key}=${envFileEntries[key]}`)
       .join('\n');
 
-    await writeFile(filepath, [existingContent, content].join('\n'));
-    console.log('[INFO] Done! ✨\n.env file successfully created');
+    await writeFile(filePath, [existingContent, content].join('\n'));
+    log.info('Done! ✨\n.env file successfully created');
   }
 };
