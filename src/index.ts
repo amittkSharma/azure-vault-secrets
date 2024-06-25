@@ -1,11 +1,9 @@
-import { askQuestion } from './services';
+import { launchProcess } from './services';
+
 import { log } from './utils';
 
 const launchApp = async () => {
-  log.info(`application launched`);
-  const answers = await askQuestion();
-
-  log.info(`answers: ${JSON.stringify(answers, null, 2)}`);
+  await launchProcess();
 };
 
 launchApp()
