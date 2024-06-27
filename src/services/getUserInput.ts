@@ -2,6 +2,9 @@ import { input } from '@inquirer/prompts';
 
 import { UserInput } from '../types';
 import { join } from 'path';
+import { validateDir } from './validateDir';
+import { isInputFileExists } from './validateInputFile';
+import { SOURCE_FILENAME, TARGET_FILENAME } from '../constants';
 
 export const getUserInput = async (): Promise<UserInput> => {
   const azVault = await input({
@@ -13,16 +16,26 @@ export const getUserInput = async (): Promise<UserInput> => {
 
   const source = await input({
     message: 'Enter the location of source file',
-    default: 'values.yaml',
+    default: '.',
   });
+
   const target = await input({
     message: 'Enter the location of target file',
-    default: '.env',
+    default: '.',
   });
+
+  const targetDirectory = join(process.cwd(), target);
+  const sourceDirectory = join(process.cwd(), source);
+
+  const sourceFilePath = join(sourceDirectory, SOURCE_FILENAME);
+  const targetFilePath = join(targetDirectory, TARGET_FILENAME);
+
+  validateDir(sourceDirectory, targetDirectory);
+  isInputFileExists(sourceFilePath);
 
   return {
     azVault,
-    completeSourceFilePath: join(process.cwd(), source),
-    completeTargetFilePath: join(process.cwd(), target),
+    completeSourceFilePath: sourceFilePath,
+    completeTargetFilePath: targetFilePath,
   };
 };

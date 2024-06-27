@@ -15,18 +15,19 @@ In order to use this module, there are few pre-requisites that must be observed 
 
 - Enhance developer experience
 - Minimum mandatory input from the user
-- Secret keys should be present in yaml format
-- An environment file (.env) file will be created in the root folder.
+- The existing .env file will not be overridden
+- Secret keys should be present in yaml format, in "values.yaml" file
+- An environment file (.env) file will be created for the secret values
 
 ### Parameters
 
 Only a minimal set of input is required by the module to complete it's task effectively and efficiently. The module also provides hints and will work with default values in case optional parameters are not provided.
 
-| S.No | Parameter Name  | Input     | Default Value                        | Description                                                                                                                                                          |
-| ---- | --------------- | --------- | ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1.   | Vault Name      | Mandatory | -                                    | Name of the azure key vault from where secrets will be fetched                                                                                                       |
-| 2.   | Source Location | Optional  | values.yaml file (in root directory) | It is the location of the yaml file that contains the secret keys. If the location is provided the module will look for "values.yaml" file in project root directory |
-| 3.   | Target Location | Optional  | .env file (in root directory)        | It is the location of .env file creation, if location is not provided the file will be created in the root directory                                                 |
+| S.No | Parameter Name  | Input     | Default Value          | Description                                                                                                                                                                                                                                           |
+| ---- | --------------- | --------- | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1.   | Vault Name      | Mandatory | -                      | Name of the azure key vault from where secrets will be fetched                                                                                                                                                                                        |
+| 2.   | Source Location | Optional  | Project toot directory | It is the location of the yaml file that contains the secret keys. If the location is not provided the module will look for "values.yaml" file in project root directory. <b>Note:</b> The secret keys must be present in the file name "values.yaml" |
+| 3.   | Target Location | Optional  | Project toot directory | It is the location of .env file creation, if location is not provided the file will be created in the root directory                                                                                                                                  |
 
 ### License
 

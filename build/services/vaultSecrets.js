@@ -7,6 +7,7 @@ const util_1 = require("util");
 const yaml_1 = require("yaml");
 const path_1 = require("path");
 const child_process_1 = require("child_process");
+const constants_1 = require("../constants");
 const exec = (0, util_1.promisify)(child_process_1.exec);
 const getVaultSecrets = async (sourceFilePath, azVault) => {
     const file = await (0, promises_1.readFile)((0, path_1.resolve)(sourceFilePath), 'utf-8');
@@ -16,7 +17,7 @@ const getVaultSecrets = async (sourceFilePath, azVault) => {
     /**
      * fetch all values
      */
-    utils_1.log.info(`start fetching all values from the provided values.yaml file from ${azVault}...`);
+    utils_1.log.info(`start fetching all values from the provided ${constants_1.SOURCE_FILENAME} file from ${azVault}...`);
     const envFileEntries = {};
     for await (const envVariableKey of envVariableKeys) {
         const azureEnvKey = envVariables[envVariableKey];

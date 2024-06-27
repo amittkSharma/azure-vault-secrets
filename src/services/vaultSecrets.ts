@@ -5,6 +5,7 @@ import { promisify } from 'util';
 import { parse } from 'yaml';
 import { resolve } from 'path';
 import { exec as callbackExec } from 'child_process';
+import { SOURCE_FILENAME } from '../constants';
 
 const exec = promisify(callbackExec);
 
@@ -18,7 +19,9 @@ export const getVaultSecrets = async (sourceFilePath: string, azVault: string) =
   /**
    * fetch all values
    */
-  log.info(`start fetching all values from the provided values.yaml file from ${azVault}...`);
+  log.info(
+    `start fetching all values from the provided ${SOURCE_FILENAME} file from ${azVault}...`,
+  );
   const envFileEntries: { [key: string]: string } = {};
   for await (const envVariableKey of envVariableKeys) {
     const azureEnvKey = envVariables[envVariableKey];
