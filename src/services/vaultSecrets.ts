@@ -13,7 +13,7 @@ export const getVaultSecrets = async (sourceFilePath: string, azVault: string) =
   const file = await readFile(resolve(sourceFilePath), 'utf-8');
   const yamlFile = parse(file);
 
-  const envVariables = yamlFile;
+  const envVariables = yamlFile.serviceConfig;
   const envVariableKeys = Object.keys(envVariables);
 
   /**

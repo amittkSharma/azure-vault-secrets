@@ -12,7 +12,7 @@ const exec = (0, util_1.promisify)(child_process_1.exec);
 const getVaultSecrets = async (sourceFilePath, azVault) => {
     const file = await (0, promises_1.readFile)((0, path_1.resolve)(sourceFilePath), 'utf-8');
     const yamlFile = (0, yaml_1.parse)(file);
-    const envVariables = yamlFile;
+    const envVariables = yamlFile.serviceConfig;
     const envVariableKeys = Object.keys(envVariables);
     /**
      * fetch all values
