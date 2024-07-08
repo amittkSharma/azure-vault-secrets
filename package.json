@@ -3,7 +3,10 @@
   "version": "0.0.2",
   "description": "Package responsible for fetching the azure vault secrets",
   "main": "index.js",
-  "repository": "https://github.com/amittkSharma/azure-vault-secrets.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amittkSharma/azure-vault-secrets.git"
+  },
   "author": "amittkSharma <amit12.sharma@gmail.com>",
   "license": "MIT",
   "private": false,
