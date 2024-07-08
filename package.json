@@ -1,6 +1,6 @@
 {
   "name": "azure-vault-secrets",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Package responsible for fetching the azure vault secrets",
   "main": "index.js",
   "repository": {
