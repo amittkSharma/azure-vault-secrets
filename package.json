@@ -1,6 +1,6 @@
 {
   "name": "azure-vault-secrets",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Package responsible for fetching the azure vault secrets",
   "main": "index.js",
   "repository": {
@@ -10,6 +10,9 @@
   "author": "amittkSharma <amit12.sharma@gmail.com>",
   "license": "MIT",
   "private": false,
+  "bin": {
+    "pullAzureSecrets": "node ./build/index.js"
+  },
   "scripts": {
     "start": "yarn ts-node src/index.ts",
     "build": "tsc --project tsconfig.json",
