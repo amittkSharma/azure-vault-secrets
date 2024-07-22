@@ -1,8 +1,8 @@
+import { UserInput } from '../types';
+import { log } from '../utils';
 import { getUserInput } from './getUserInput';
 import { getVaultSecrets } from './vaultSecrets';
-import { log } from '../utils';
 import { writeSecrets } from './writeSecrets';
-import { UserInput } from '../types';
 
 export const launchProcess = async () => {
   log.info(`Launching process for getting the secrets from azure vault`);
@@ -10,6 +10,7 @@ export const launchProcess = async () => {
   const secrets: { [key: string]: string } = await getVaultSecrets(
     userInput.completeSourceFilePath,
     userInput.azVault,
+    userInput.objectName,
   );
   writeSecrets(secrets, userInput.completeTargetFilePath);
 };

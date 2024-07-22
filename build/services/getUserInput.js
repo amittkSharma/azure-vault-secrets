@@ -3,9 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getUserInput = void 0;
 const prompts_1 = require("@inquirer/prompts");
 const path_1 = require("path");
+const constants_1 = require("../constants");
 const validateDir_1 = require("./validateDir");
 const validateInputFile_1 = require("./validateInputFile");
-const constants_1 = require("../constants");
 const getUserInput = async () => {
     const azVault = await (0, prompts_1.input)({
         message: 'Enter the vault name from where secrets will be fetched',
@@ -21,6 +21,10 @@ const getUserInput = async () => {
         message: 'Enter the location of target file',
         default: '.',
     });
+    const objectName = await (0, prompts_1.input)({
+        message: 'Please provide the name of top object',
+        default: constants_1.TOP_OBJECT_NAME,
+    });
     const targetDirectory = (0, path_1.join)(process.cwd(), target);
     const sourceDirectory = (0, path_1.join)(process.cwd(), source);
     const sourceFilePath = (0, path_1.join)(sourceDirectory, constants_1.SOURCE_FILENAME);
@@ -29,6 +33,7 @@ const getUserInput = async () => {
     (0, validateInputFile_1.isInputFileExists)(sourceFilePath);
     return {
         azVault,
+        objectName,
         completeSourceFilePath: sourceFilePath,
         completeTargetFilePath: targetFilePath,
     };

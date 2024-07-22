@@ -1,10 +1,10 @@
 import { input } from '@inquirer/prompts';
 
-import { UserInput } from '../types';
 import { join } from 'path';
+import { SOURCE_FILENAME, TARGET_FILENAME, TOP_OBJECT_NAME } from '../constants';
+import { UserInput } from '../types';
 import { validateDir } from './validateDir';
 import { isInputFileExists } from './validateInputFile';
-import { SOURCE_FILENAME, TARGET_FILENAME } from '../constants';
 
 export const getUserInput = async (): Promise<UserInput> => {
   const azVault = await input({
@@ -24,6 +24,11 @@ export const getUserInput = async (): Promise<UserInput> => {
     default: '.',
   });
 
+  const objectName = await input({
+    message: 'Please provide the name of top object',
+    default: TOP_OBJECT_NAME,
+  });
+
   const targetDirectory = join(process.cwd(), target);
   const sourceDirectory = join(process.cwd(), source);
 
@@ -35,6 +40,7 @@ export const getUserInput = async (): Promise<UserInput> => {
 
   return {
     azVault,
+    objectName,
     completeSourceFilePath: sourceFilePath,
     completeTargetFilePath: targetFilePath,
   };
