@@ -1,18 +1,18 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getVaultSecrets = void 0;
-const utils_1 = require("../utils");
 const promises_1 = require("fs/promises");
 const util_1 = require("util");
-const yaml_1 = require("yaml");
-const path_1 = require("path");
+const utils_1 = require("../utils");
 const child_process_1 = require("child_process");
+const path_1 = require("path");
+const yaml_1 = require("yaml");
 const constants_1 = require("../constants");
 const exec = (0, util_1.promisify)(child_process_1.exec);
-const getVaultSecrets = async (sourceFilePath, azVault) => {
+const getVaultSecrets = async (sourceFilePath, azVault, objectName) => {
     const file = await (0, promises_1.readFile)((0, path_1.resolve)(sourceFilePath), 'utf-8');
     const yamlFile = (0, yaml_1.parse)(file);
-    const envVariables = yamlFile.serviceConfig;
+    const envVariables = yamlFile[objectName];
     const envVariableKeys = Object.keys(envVariables);
     /**
      * fetch all values

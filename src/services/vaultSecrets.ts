@@ -1,19 +1,23 @@
-import { log } from '../utils';
 import { readFile } from 'fs/promises';
 import { promisify } from 'util';
+import { log } from '../utils';
 
-import { parse } from 'yaml';
-import { resolve } from 'path';
 import { exec as callbackExec } from 'child_process';
+import { resolve } from 'path';
+import { parse } from 'yaml';
 import { SOURCE_FILENAME } from '../constants';
 
 const exec = promisify(callbackExec);
 
-export const getVaultSecrets = async (sourceFilePath: string, azVault: string) => {
+export const getVaultSecrets = async (
+  sourceFilePath: string,
+  azVault: string,
+  objectName: string,
+) => {
   const file = await readFile(resolve(sourceFilePath), 'utf-8');
   const yamlFile = parse(file);
 
-  const envVariables = yamlFile.serviceConfig;
+  const envVariables = yamlFile[objectName];
   const envVariableKeys = Object.keys(envVariables);
 
   /**
