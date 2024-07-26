@@ -27,7 +27,14 @@ Only a minimal set of input is required by the module to complete it's task effe
 | ---- | --------------- | --------- | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 1.   | Vault Name      | Mandatory | -                      | Name of the azure key vault from where secrets will be fetched                                                                                                                                                                                        |
 | 2.   | Source Location | Optional  | Project toot directory | It is the location of the yaml file that contains the secret keys. If the location is not provided the module will look for "values.yaml" file in project root directory. <b>Note:</b> The secret keys must be present in the file name "values.yaml" |
-| 3.   | Target Location | Optional  | Project toot directory | It is the location of .env file creation, if location is not provided the file will be created in the root directory                                                                                                                                  |
+| 3.   | Target Location | Optional  | Project toot directory | It is the location of .env file creation, if location is not provided the file will be created in the root directory|
+| 4.   | Object Name     | Optional  | serviceConfig| This is the top object under which other secret keys are present                                                              |
+
+### Configuration
+
+- The package also works with a configuration file 'azureVault.yaml'
+- Package will ask user confirmation, if provided the configuration file will be created in the root directory
+- If the configuration file is present no questions will be asked
 
 ### License
 
