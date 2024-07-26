@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.writeSecrets = void 0;
-const promises_1 = require("fs/promises");
 const fs_1 = require("fs");
+const promises_1 = require("fs/promises");
 const utils_1 = require("../utils");
 const readDotEnvFile = (filepath) => {
     if ((0, fs_1.existsSync)(filepath)) {
-        let baseContent = (0, fs_1.readFileSync)(filepath, 'utf8');
+        const baseContent = (0, fs_1.readFileSync)(filepath, 'utf8');
         // if (baseContent.includes(HEADER)) {
         //   const start = baseContent.indexOf(HEADER);
         //   const end = baseContent.indexOf(FOOTER) + FOOTER.length || baseContent.length;

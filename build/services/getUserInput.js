@@ -4,6 +4,7 @@ exports.getUserInput = void 0;
 const prompts_1 = require("@inquirer/prompts");
 const path_1 = require("path");
 const constants_1 = require("../constants");
+const utils_1 = require("../utils");
 const validateDir_1 = require("./validateDir");
 const validateInputFile_1 = require("./validateInputFile");
 const getUserInput = async () => {
@@ -29,13 +30,24 @@ const getUserInput = async () => {
     const sourceDirectory = (0, path_1.join)(process.cwd(), source);
     const sourceFilePath = (0, path_1.join)(sourceDirectory, constants_1.SOURCE_FILENAME);
     const targetFilePath = (0, path_1.join)(targetDirectory, constants_1.TARGET_FILENAME);
+    const confirmConfigFileCreation = await (0, prompts_1.confirm)({
+        message: 'Do you want to save the configuration?',
+        default: true,
+    });
     (0, validateDir_1.validateDir)(sourceDirectory, targetDirectory);
     (0, validateInputFile_1.isInputFileExists)(sourceFilePath);
-    return {
+    const userInput = {
         azVault,
         objectName,
         completeSourceFilePath: sourceFilePath,
         completeTargetFilePath: targetFilePath,
     };
+    if (confirmConfigFileCreation) {
+        (0, utils_1.writeFile)(constants_1.CONFIGURATION_FILE_NAME, userInput);
+    }
+    else {
+        utils_1.log.warn(`In the absence of configuration file, questions will be asked again!!!`);
+    }
+    return userInput;
 };
 exports.getUserInput = getUserInput;

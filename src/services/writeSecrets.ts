@@ -1,10 +1,10 @@
-import { writeFile } from 'fs/promises';
 import { existsSync, readFileSync } from 'fs';
+import { writeFile } from 'fs/promises';
 import { log } from '../utils';
 
 const readDotEnvFile = (filepath: string) => {
   if (existsSync(filepath)) {
-    let baseContent = readFileSync(filepath, 'utf8');
+    const baseContent = readFileSync(filepath, 'utf8');
 
     // if (baseContent.includes(HEADER)) {
     //   const start = baseContent.indexOf(HEADER);

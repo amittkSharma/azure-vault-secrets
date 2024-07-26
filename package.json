@@ -34,6 +34,7 @@
     "@inquirer/prompts": "^5.0.6",
     "pino": "^9.2.0",
     "pino-pretty": "^11.2.1",
+    "write-yaml-file": "^5.0.0",
     "yaml": "^2.4.5"
   },
   "commit-and-tag-version": {

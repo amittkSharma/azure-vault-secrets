@@ -1,8 +1,14 @@
-import { input } from '@inquirer/prompts';
+import { confirm, input } from '@inquirer/prompts';
 
 import { join } from 'path';
-import { SOURCE_FILENAME, TARGET_FILENAME, TOP_OBJECT_NAME } from '../constants';
+import {
+  CONFIGURATION_FILE_NAME,
+  SOURCE_FILENAME,
+  TARGET_FILENAME,
+  TOP_OBJECT_NAME,
+} from '../constants';
 import { UserInput } from '../types';
+import { log, writeFile } from '../utils';
 import { validateDir } from './validateDir';
 import { isInputFileExists } from './validateInputFile';
 
@@ -35,13 +41,26 @@ export const getUserInput = async (): Promise<UserInput> => {
   const sourceFilePath = join(sourceDirectory, SOURCE_FILENAME);
   const targetFilePath = join(targetDirectory, TARGET_FILENAME);
 
+  const confirmConfigFileCreation = await confirm({
+    message: 'Do you want to save the configuration?',
+    default: true,
+  });
+
   validateDir(sourceDirectory, targetDirectory);
   isInputFileExists(sourceFilePath);
 
-  return {
+  const userInput: UserInput = {
     azVault,
     objectName,
     completeSourceFilePath: sourceFilePath,
     completeTargetFilePath: targetFilePath,
   };
+
+  if (confirmConfigFileCreation) {
+    writeFile(CONFIGURATION_FILE_NAME, userInput);
+  } else {
+    log.warn(`In the absence of configuration file, questions will be asked again!!!`);
+  }
+
+  return userInput;
 };
